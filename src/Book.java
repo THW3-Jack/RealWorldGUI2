@@ -89,6 +89,11 @@ public class Book {
         currentBookNum = currentBookNum + 1;
         return books.get(currentBookNum);
     }
+    static Book getPrev() {
+        readBooks();
+        currentBookNum = currentBookNum - 1;
+        return books.get(currentBookNum);
+    }
 
 
 

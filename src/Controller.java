@@ -38,7 +38,14 @@ public class Controller {
     }
 
     public void prevPressed() {
+        Book nextBook = Book.getPrev();
 
+        title.setText(nextBook.getTitle());
+        author.setText(nextBook.getAuthor());
+        language.setText(nextBook.getLanguage());
+        publish.setText(nextBook.getPublish());
+        sales.setText(nextBook.getSales());
+        genre.setText(nextBook.getGenre());
 
     }
 
