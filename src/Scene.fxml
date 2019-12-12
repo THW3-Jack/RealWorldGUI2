@@ -4,33 +4,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" hgap="10" prefHeight="362.0" prefWidth="432.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<GridPane alignment="center" hgap="10" prefHeight="465.0" prefWidth="618.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <columnConstraints>
+      <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <VBox prefHeight="364.0" prefWidth="431.0" GridPane.rowIndex="2">
+      <VBox prefHeight="538.0" prefWidth="591.0" GridPane.rowIndex="2">
          <children>
-            <Label alignment="CENTER" prefHeight="71.0" prefWidth="433.0" text="Most Sales of Books" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="586.0" text="Most Sales of Books" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
+            <HBox prefHeight="106.0" prefWidth="586.0">
+               <children>
+                  <Button fx:id="filechooser" mnemonicParsing="false" onAction="#filePressed" prefHeight="40.0" prefWidth="80.0" text="Data" translateX="170.0" translateY="20.0" />
+                  <Button fx:id="imagechooser" mnemonicParsing="false" onAction="#imagePressed" prefHeight="40.0" prefWidth="80.0" text="Image " translateX="260.0" translateY="20.0" />
+               </children>
+            </HBox>
             <HBox prefHeight="29.0" prefWidth="327.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="103.0" text="Book Title: " />
-                  <TextField fx:id="title" onAction="#nextPressed" />
+                  <TextField fx:id="title" onAction="#nextPressed" prefHeight="33.0" prefWidth="167.0" />
                </children>
             </HBox>
             <HBox prefHeight="29.0" prefWidth="256.0">
@@ -39,19 +48,19 @@
                   <TextField fx:id="author" onAction="#nextPressed" prefHeight="32.0" prefWidth="167.0" />
                </children>
             </HBox>
-            <HBox prefHeight="31.0" prefWidth="431.0">
+            <HBox prefHeight="25.0" prefWidth="325.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="103.0" text="Language: " />
                   <TextField fx:id="language" onAction="#nextPressed" />
                </children>
             </HBox>
-            <HBox prefHeight="29.0" prefWidth="431.0">
+            <HBox prefHeight="22.0" prefWidth="591.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="103.0" text="Year Published: " />
                   <TextField fx:id="publish" onAction="#nextPressed" prefWidth="167.0" />
                </children>
             </HBox>
-            <HBox prefHeight="30.0" prefWidth="327.0">
+            <HBox prefHeight="28.0" prefWidth="591.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="103.0" text="Copies Sold: " />
                   <TextField fx:id="sales" onAction="#nextPressed" />
@@ -59,17 +68,19 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="327.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="104.0" text="Genre: " />
+                  <Label prefHeight="17.0" prefWidth="103.0" text="Genre: " />
                   <TextField fx:id="genre" onAction="#nextPressed" />
                </children>
             </HBox>
             <HBox prefHeight="97.0" prefWidth="431.0">
                <children>
-                  <Button fx:id="prev" mnemonicParsing="false" onAction="#prevPressed" text="prev" />
-                  <Button fx:id="next" mnemonicParsing="false" onAction="#nextPressed" text="next" />
+                  <Button fx:id="prev" mnemonicParsing="false" onAction="#prevPressed" prefHeight="27.0" prefWidth="135.0" text="prev" translateY="65.0" />
+                  <Button fx:id="next" mnemonicParsing="false" onAction="#nextPressed" prefHeight="27.0" prefWidth="135.0" text="next" translateX="320.0" translateY="65.0" />
                </children>
             </HBox>
          </children>
       </VBox>
+      <ImageView fitHeight="220.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="sLabel" text="Status" GridPane.rowIndex="3" />
    </children>
 </GridPane>

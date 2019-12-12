@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
 
-public class Book {
+public class Book implements Serializable {
 
-    static public ArrayList<Book> books;
+    static public ArrayList<Book> books = new ArrayList<Book>();
     static private int currentBookNum;
 
     private String title;
@@ -22,21 +23,14 @@ public class Book {
         this.sales = sales;
         this.title = title;
         currentBookNum = 0;
+
     }
 
-    static ArrayList<Book> readBooks() {
-        if (books != null) {
-            // albums have already been read from file
-            return books;
-        }
-
-        // create array list class field where albums will be stored
-        books = new ArrayList<Book>();
+    static ArrayList<Book> importBooks(File dataFile) {
 
         try {
             // scan data file line-by-line
-            File bookDataFile = new File("res/Book Data");
-            Scanner scanner = new Scanner(bookDataFile);
+            Scanner scanner = new Scanner(dataFile);
             while (scanner.hasNextLine()){
                 String str = scanner.nextLine();
                 Scanner lineScanner = new Scanner(str);
@@ -66,10 +60,6 @@ public class Book {
 
     }
     static void describeBook() {
-        if (books == null) {
-            // read the albums from file
-            readBooks();
-        }
 
         for (int i = 0; i < books.size(); i++) {
             books.get(i).describe();
@@ -80,17 +70,25 @@ public class Book {
     }
 
     static Book getCurrent() {
-        readBooks();
+        if (books.size() == 0) {
+            return null;
+        }
+
         return books.get(currentBookNum);
     }
 
     static Book getNext() {
-        readBooks();
+        if (books.size() == 0) {
+            return null;
+        }
+
         currentBookNum = currentBookNum + 1;
         return books.get(currentBookNum);
     }
     static Book getPrev() {
-        readBooks();
+        if (books.size() == 0) {
+            return null;
+        }
         currentBookNum = currentBookNum - 1;
         return books.get(currentBookNum);
     }
