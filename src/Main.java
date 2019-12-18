@@ -6,14 +6,26 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private Controller myController;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene.fxml"));
+        Parent root = loader.load();
+        myController = loader.getController();
+        myController.primaryStage = primaryStage;
+
+
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
 
+    @Override
+    public void stop() {
+        // When the Application stops, save all the text seen in GUI View
+        myController.save();
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" hgap="10" prefHeight="465.0" prefWidth="618.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<GridPane alignment="center" hgap="10" prefHeight="460.0" prefWidth="592.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -21,9 +21,10 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <VBox prefHeight="538.0" prefWidth="591.0" GridPane.rowIndex="2">
+      <VBox prefHeight="538.0" prefWidth="591.0" GridPane.rowIndex="3">
          <children>
             <Label alignment="CENTER" prefHeight="35.0" prefWidth="586.0" text="Most Sales of Books" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <VBox.margin>
@@ -32,7 +33,8 @@
             </Label>
             <HBox prefHeight="106.0" prefWidth="586.0">
                <children>
-                  <Button fx:id="filechooser" mnemonicParsing="false" onAction="#filePressed" prefHeight="40.0" prefWidth="80.0" text="Data" translateX="170.0" translateY="20.0" />
+                  <Button mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="80.0" text="Save" translateX="100.0" translateY="20.0" />
+                  <Button fx:id="filechooser" mnemonicParsing="false" onAction="#filePressed" prefHeight="40.0" prefWidth="80.0" text="Data" translateX="180.0" translateY="20.0" />
                   <Button fx:id="imagechooser" mnemonicParsing="false" onAction="#imagePressed" prefHeight="40.0" prefWidth="80.0" text="Image " translateX="260.0" translateY="20.0" />
                </children>
             </HBox>
@@ -80,7 +82,7 @@
             </HBox>
          </children>
       </VBox>
-      <ImageView fitHeight="220.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label fx:id="sLabel" text="Status" GridPane.rowIndex="3" />
+      <ImageView fitHeight="220.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="sLabel" text="Status" GridPane.rowIndex="4" />
    </children>
 </GridPane>

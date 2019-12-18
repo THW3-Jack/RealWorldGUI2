@@ -1,9 +1,9 @@
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.File;
 import java.util.Scanner;
 
 public class Book implements Serializable {
+    static private final long serialVersionUID = 2L;
 
     static public ArrayList<Book> books = new ArrayList<Book>();
     static private int currentBookNum;
@@ -59,6 +59,56 @@ public class Book implements Serializable {
         return books;
 
     }
+
+    static void saveData(FileOutputStream file) {
+
+        try {
+
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+
+            // 1. Save the number of albums in list
+            out.writeInt(books.size());
+            // 2. Save each album object
+            for (int i = 0; i < books.size(); i = i + 1) {
+                out.writeObject(books.get(i));
+            }
+            // 3. Write a long number to create buffer between albums objects and avatar image
+            out.writeLong(100L);
+            // 4. Save the avatar
+            //****ImageIO.write(SwingFXUtils.fromFXImage(avatar, null), "png", out);
+            // 5. Write a long number to create buffer between avatar image and end of file
+            out.writeLong(300L);
+
+            // Done saving; close the object stream
+            out.close();
+        } catch (Exception ex) {
+            System.out.println("Save exception: ");
+            ex.printStackTrace();
+        }
+
+
+    }
+
+    static void restore(FileInputStream file) {
+
+        try {
+
+            ObjectInputStream in = new ObjectInputStream(file);
+            int numberOfBooks = in.readInt();
+            for (int i = 0; i < numberOfBooks; i = i + 1) {
+                Book nextBook = (Book)in.readObject();
+                books.add(nextBook);
+            }
+
+
+        } catch (Exception ex) {
+            System.out.println("Restore exception: ");
+            ex.printStackTrace();
+        }
+
+    }
+
     static void describeBook() {
 
         for (int i = 0; i < books.size(); i++) {
@@ -82,14 +132,22 @@ public class Book implements Serializable {
             return null;
         }
 
-        currentBookNum = currentBookNum + 1;
+        if (currentBookNum == books.size() - 1) {
+            currentBookNum = 0;
+        } else {
+            currentBookNum = currentBookNum + 1;
+        }
         return books.get(currentBookNum);
     }
     static Book getPrev() {
         if (books.size() == 0) {
             return null;
         }
-        currentBookNum = currentBookNum - 1;
+        if (currentBookNum == 0) {
+            currentBookNum = books.size() - 1;
+        } else {
+            currentBookNum = currentBookNum - 1;
+        }
         return books.get(currentBookNum);
     }
 

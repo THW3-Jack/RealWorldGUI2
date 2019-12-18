@@ -4,9 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.io.File;
-import java.io.FilenameFilter;
+import java.io.*;
 
 public class Controller {
 Stage primaryStage;
@@ -22,6 +20,8 @@ Stage primaryStage;
     public TextField publish;
     public TextField sales;
     public TextField genre;
+
+    private final String savedFilePath = "/tmp/ChangedBookData";
 
     public Label sLabel;
 
@@ -59,7 +59,21 @@ Stage primaryStage;
     }
 
     public void initialize() {
-         //get next book
+
+        File savedDataFile = new File(savedFilePath);
+        if (savedDataFile.exists()) {
+            try {
+                FileInputStream file = new FileInputStream(savedDataFile);
+                Book.restore(file);
+                sLabel.setText("Data restored");
+                file.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+        //get next book
         Book nextBook = Book.getCurrent();
 
         if (nextBook == null) {
@@ -106,5 +120,22 @@ Stage primaryStage;
         genre.setText(nextBook.getGenre());
 
     }
+
+
+    public void save() {
+        try {
+            FileOutputStream out = new FileOutputStream(savedFilePath);
+            Book.saveData(out);
+
+            sLabel.setText("All data saved to: " + savedFilePath);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+
+
+    }
+
 
 }
