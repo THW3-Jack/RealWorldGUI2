@@ -70,6 +70,7 @@ Stage primaryStage;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+
         }
 
 
@@ -86,6 +87,30 @@ Stage primaryStage;
         publish.setText(nextBook.getPublish());
         sales.setText(nextBook.getSales());
         genre.setText(nextBook.getGenre());
+
+        title.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setTitle(newvalue);
+        });
+
+        author.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setAuthor(newvalue);
+        });
+
+        language.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setLanguage(newvalue);
+        });
+
+        publish.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setPublish(newvalue);
+        });
+
+        sales.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setSales(newvalue);
+        });
+
+        genre.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            Book.getCurrent().setGenre(newvalue);
+        });
 
     }
 
